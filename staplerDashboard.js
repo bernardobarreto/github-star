@@ -10,7 +10,7 @@ function createClipPanel(){
     Panel.append('<div class="bottom-bar">');
     Panel.children('.bottom-bar').append('<a href="#" class="show-more" id="inline_clipped_repos">')
 
-    $('div[id=dashboard]').append(Panel);
+    $('div[id=dashboard]').prepend(Panel);
 }
 
 
