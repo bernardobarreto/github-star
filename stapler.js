@@ -71,7 +71,7 @@ function addClipButton(){
     var button = $('<li class="js-toggler-container">')
         .append('<a href="#" class="minibutton mousedown">');
         button.children('a').text('Clip!')
-        .click(addRepo(repoURL));
+        .bind('click',addRepo(repoURL));
 
     $('.pagehead-actions').append(button)
 
