@@ -1,0 +1,15 @@
+{
+  "name": "RepoStapler",
+  "version": "1.0",
+  "description": "Because sometimes you want to keep a project reference without watch it (github).",
+
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/", "https://github.com/dashboard/yours"],
+      "js": ["jquery-1.7.min.js", "staplerDashboard.js"]
+    }
+  ],
+
+  "permissions": ["https://github.com/*", "tabs"]
+
+}
