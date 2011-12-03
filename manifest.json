@@ -5,8 +5,8 @@
 
   "content_scripts": [
     {
-      "matches": ["https://github.com/", "https://github.com/dashboard/yours"],
-      "js": ["jquery-1.7.min.js", "staplerDashboard.js"]
+      "matches": ["https://github.com/"],
+      "js": ["jquery-1.7.min.js", "stapler.js"]
     }
   ],
 
