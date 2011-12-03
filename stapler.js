@@ -1,6 +1,6 @@
-function addRepo(repoInfo){
+function addRepo(repoInfo) {
 
-    var repoOwner = repoInfo.replace(new RegExp("/.*"),'');
+    var repoOwner = repoInfo.replace(new RegExp("/.*"), '');
 
     var repoName = repoInfo.replace(new RegExp(".*/"), '');
 
@@ -14,25 +14,21 @@ function addRepo(repoInfo){
 }
 
 
-function addClipButton(){
+function addClipButton() {
 
-    var repoURL = $('[rel=alternate]')[0].getAttribute('href')
-                    .replace('https://github.com/', '')
-                    .replace('/commits/master.atom', '');
+    var repoURL = $('[rel=alternate]')[0].getAttribute('href').replace('https://github.com/', '').replace('/commits/master.atom', '');
 
-    var button = $('<li class="js-toggler-container">')
-        .append('<a href="#" class="minibutton" id="clip_button">');
-        button.children('a').text('Clip!')
-        .click(function(){
-            addRepo(repoURL)
-        });
+    var button = $('<li class="js-toggler-container">').append('<a href="#" class="minibutton" id="clip_button">');
+    button.children('a').text('Clip!').click(function () {
+        addRepo(repoURL)
+    });
 
     $('.pagehead-actions').append(button)
 
 }
 
 
-function createClipPanel(){
+function createClipPanel() {
 
     var Panel = $('<div class="repos" id="clipped_repos">').hide()
 
@@ -48,17 +44,19 @@ function createClipPanel(){
 }
 
 
-function fillPanel (){
+function fillPanel() {
 
     var getRepos = JSON.parse(localStorage.getItem('repos'))
 
-    for (key in getRepos){
+    for (key in getRepos) {
 
         var repoName = key;
         var repoOwner = getRepos[key];
 
         var li = $('<li class="public source">').append('<a>');
-        li.children('a').attr({'href': '/' + repoOwner + '/' + repoName})
+        li.children('a').attr({
+            'href': '/' + repoOwner + '/' + repoName
+        })
             .append('<span class="owner">')
             .append('/')
             .append('<span class="repo">');
@@ -73,16 +71,16 @@ function fillPanel (){
 }
 
 
-function handleURLS(){
+function handleURLS() {
 
     var url = window.location.href
 
-    if (url == "https://github.com/" || url == "https://github.com/dashboard/yours"){
+    if (url == "https://github.com/" || url == "https://github.com/dashboard/yours") {
         createClipPanel();
         fillPanel();
         $('#clipped_repos').show();
 
-    } else if ($('.watch-button').length > 0){
+    } else if ($('.watch-button').length > 0) {
         addClipButton();
     }
 }
