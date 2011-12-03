@@ -1,13 +1,28 @@
-function addRepo(repoInfo) {
+function repoInfos(){
 
-    var repoOwner = repoInfo.replace(new RegExp("/.*"), '');
+    var repoInfos = {};
 
-    var repoName = repoInfo.replace(new RegExp(".*/"), '');
+    repoInfos.URL = $('[rel=alternate]')[0].getAttribute('href')
+        .replace('https://github.com/', '')
+        .replace('/commits/master.atom', '');
+
+    repoInfos.owner = repoInfos.URL.replace(new RegExp("/.*"), '');
+
+    repoInfos.name = repoInfos.URL.replace(new RegExp(".*/"), '');
+
+    return repoInfos;
+
+}
+
+
+function addRepo(infos) {
+
+    var repoInfo = infos()
 
     var repos = JSON.parse(localStorage.getItem('repos')) || {};
 
     // TODO: This way I can't have more than one repo with the same name, fix it!
-    repos[repoName] = repoOwner;
+    repos[repoInfo.name] = repoInfo.owner;
 
     // Add to localStorage
     localStorage.setItem('repos', JSON.stringify(repos));
@@ -16,17 +31,17 @@ function addRepo(repoInfo) {
 
 function addClipButton() {
 
-    var repoURL = $('[rel=alternate]')[0].getAttribute('href').replace('https://github.com/', '').replace('/commits/master.atom', '');
-
     var button = $('<li class="js-toggler-container">').append('<a href="#" class="minibutton" id="clip_button">');
     button.children('a').text('Clip!').click(function () {
-        addRepo(repoURL)
+        addRepo(repoInfos)
     });
 
     $('.pagehead-actions').append(button)
 
 }
 
+
+//######################################### DASHBOARD #############################################
 
 function createClipPanel() {
 
