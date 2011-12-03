@@ -21,9 +21,11 @@ function addClipButton(){
                     .replace('/commits/master.atom', '');
 
     var button = $('<li class="js-toggler-container">')
-        .append('<a href="#" class="minibutton mousedown">');
+        .append('<a href="#" class="minibutton" id="clip_button">');
         button.children('a').text('Clip!')
-        .bind('click',addRepo(repoURL));
+        .click(function(){
+            addRepo(repoURL)
+        });
 
     $('.pagehead-actions').append(button)
 
@@ -69,6 +71,7 @@ function fillPanel (){
 
     }
 }
+
 
 function handleURLS(){
 
