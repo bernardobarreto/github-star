@@ -1,3 +1,23 @@
+function clippedRepos(){
+    var repos = JSON.parse(localStorage.getItem('repos')) || {};
+    return repos;
+}
+
+
+function handleButtonFunction(infos){
+
+    var repos = clippedRepos();
+
+    var repoInfo = infos;
+
+    if (repoInfo.name in repos) {
+        return removeRepo;
+    } else {
+        return addRepo;
+    }
+}
+
+
 function repoInfos(){
 
     var repoInfos = {};
@@ -15,11 +35,22 @@ function repoInfos(){
 }
 
 
+function removeRepo(infos){
+
+    var repos = clippedRepos();
+
+    var repoInfo = infos;
+
+    localStorage.removeItem('repos', JSON.stringify(repos));
+
+}
+
+
 function addRepo(infos) {
 
-    var repoInfo = infos()
+    var repos = clippedRepos();
 
-    var repos = JSON.parse(localStorage.getItem('repos')) || {};
+    var repoInfo = infos;
 
     // TODO: This way I can't have more than one repo with the same name, fix it!
     repos[repoInfo.name] = repoInfo.owner;
@@ -31,9 +62,13 @@ function addRepo(infos) {
 
 function addClipButton() {
 
+    var repoInfo = repoInfos();
+
+    var job = handleButtonFunction(repoInfo);
+
     var button = $('<li class="js-toggler-container">').append('<a href="#" class="minibutton" id="clip_button">');
     button.children('a').text('Clip!').click(function () {
-        addRepo(repoInfos)
+        job(repoInfo)
     });
 
     $('.pagehead-actions').append(button)
