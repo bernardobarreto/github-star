@@ -37,11 +37,13 @@ function repoInfos(){
 
 function removeRepo(infos){
 
-    var repos = clippedRepos();
-
     var repoInfo = infos;
 
-    localStorage.removeItem('repos', JSON.stringify(repos));
+    var repos = clippedRepos();
+
+    delete repos[repoInfo.name];
+
+    localStorage.setItem('repos', JSON.stringify(repos));
 
 }
 
@@ -66,7 +68,7 @@ function addClipButton() {
 
     var job = handleButtonFunction(repoInfo);
 
-    var button = $('<li class="js-toggler-container">').append('<a href="#" class="minibutton" id="clip_button">');
+    var button = $('<li class="js-toggler-container">').append('<a href="" class="minibutton" id="clip_button">');
     button.children('a').text('Clip!').click(function () {
         job(repoInfo)
     });
@@ -88,7 +90,7 @@ function createClipPanel() {
     Panel.append('<ul class="repo_list" id="clipped_repos_listing">')
 
     Panel.append('<div class="bottom-bar">');
-    Panel.children('.bottom-bar').append('<a href="#" class="show-more" id="inline_clipped_repos">')
+    Panel.children('.bottom-bar').append('<a href="" class="show-more" id="inline_clipped_repos">')
 
     $('div[id=dashboard]').prepend(Panel);
 }
