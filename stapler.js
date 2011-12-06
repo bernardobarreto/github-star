@@ -4,11 +4,11 @@ function clippedRepos(){
 }
 
 
-function handleButtonFunction(infos){
+function handleButtonFunction(){
 
     var repos = clippedRepos();
 
-    var repoInfo = infos;
+    var repoInfo = repoInfos_func();
 
     if (repoInfo.name in repos) {
         return removeRepo;
@@ -18,7 +18,7 @@ function handleButtonFunction(infos){
 }
 
 
-function repoInfos(){
+function repoInfos_func(){
 
     var repoInfos = {};
 
@@ -35,9 +35,9 @@ function repoInfos(){
 }
 
 
-function removeRepo(infos){
+function removeRepo(){
 
-    var repoInfo = infos;
+    var repoInfo = repoInfos_func();
 
     var repos = clippedRepos();
 
@@ -48,11 +48,11 @@ function removeRepo(infos){
 }
 
 
-function addRepo(infos) {
+function addRepo() {
 
     var repos = clippedRepos();
 
-    var repoInfo = infos;
+    var repoInfo = repoInfos_func();
 
     // TODO: This way I can't have more than one repo with the same name, fix it!
     repos[repoInfo.name] = repoInfo.owner;
@@ -64,7 +64,7 @@ function addRepo(infos) {
 
 function addClipButton() {
 
-    var repoInfo = repoInfos();
+    var repoInfo = repoInfos_func();
 
     var job = handleButtonFunction(repoInfo);
 
