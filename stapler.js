@@ -31,7 +31,6 @@ function repoInfos_func(){
     repoInfos.name = repoInfos.URL.replace(new RegExp(".*/"), '');
 
     return repoInfos;
-
 }
 
 
@@ -44,7 +43,6 @@ function removeRepo(){
     delete repos[repoInfo.name];
 
     localStorage.setItem('repos', JSON.stringify(repos));
-
 }
 
 
@@ -78,7 +76,6 @@ function addClipButton() {
         });
 
     $('.pagehead-actions').append(button);
-
 }
 
 
@@ -127,11 +124,10 @@ function fillPanel() {
         }
 
         repos !== "{}" && $('#clipped_repos').show();
-
     }
 }
 
-function handleURLS() {
+(function handleURLS() {
 
     var url = window.location.href
 
@@ -142,6 +138,4 @@ function handleURLS() {
     } else if ($('.watch-button').length > 0) {
         addClipButton();
     }
-}
-
-handleURLS()
+})();
