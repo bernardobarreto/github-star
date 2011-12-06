@@ -20,15 +20,10 @@ function handleButtonFunction(){
 
 function repoInfos_func(){
 
-    var repoInfos = {};
-
-    repoInfos.URL = $('[rel=alternate]')[0].getAttribute('href')
+    var repoInfos = $('[rel=alternate]')[0].getAttribute('href')
         .replace('https://github.com/', '')
         .replace('/commits/master.atom', '');
 
-    repoInfos.owner = repoInfos.URL.replace(new RegExp("/.*"), '');
-
-    repoInfos.name = repoInfos.URL.replace(new RegExp(".*/"), '');
 
     return repoInfos;
 }
@@ -99,12 +94,18 @@ function createClipPanel() {
 
 function fillPanel() {
 
+    repoInfos.owner = repoInfo.replace(new RegExp("/.*"), '');
+
+    repoInfos.name = repoInfo.replace(new RegExp(".*/"), '');
+
+    var reposInfo = repoInfos_func();
+
     var repos = JSON.stringify(clippedRepos());
 
-    var getRepos = JSON.parse(localStorage.getItem('repos'));
+    var getRepos = clippedRepos();
 
     if (getRepos){
-        for (key in getRepos) {
+        for (value in getRepos) {
 
             var repoName = key;
             var repoOwner = getRepos[key];
