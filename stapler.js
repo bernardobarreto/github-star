@@ -98,7 +98,9 @@ function createClipPanel() {
 
 function fillPanel() {
 
-    var getRepos = JSON.parse(localStorage.getItem('repos'))
+    var repos = JSON.stringify(clippedRepos());
+
+    var getRepos = JSON.parse(localStorage.getItem('repos'));
 
     if (getRepos){
         for (key in getRepos) {
@@ -120,7 +122,7 @@ function fillPanel() {
             $('#clipped_repos_listing').append(li);
         }
 
-        $('#clipped_repos').show();
+        repos !== "{}" && $('#clipped_repos').show();
 
     }
 }
