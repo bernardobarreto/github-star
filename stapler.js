@@ -127,7 +127,7 @@ function fillPanel() {
     }
 }
 
-(function handleURLS() {
+(function main() {
 
     var url = window.location.href
 
