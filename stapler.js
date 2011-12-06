@@ -68,13 +68,16 @@ function addClipButton() {
 
     var job = handleButtonFunction(repoInfo);
 
+    var button_name = undefined;
+    job === addRepo ? button_name = 'Clip!' : button_name = 'Unclip!';
+
     var button = $('<li class="js-toggler-container">')
         .append('<a href="" class="minibutton" id="clip_button">')
-        .children('a').append('<span> Clip! </span>').click(function () {
+        .children('a').append('<span>' + button_name + '</span>').click(function () {
             job(repoInfo)
         });
 
-    $('.pagehead-actions').append(button)
+    $('.pagehead-actions').append(button);
 
 }
 
