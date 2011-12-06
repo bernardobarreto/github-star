@@ -100,28 +100,30 @@ function fillPanel() {
 
     var getRepos = JSON.parse(localStorage.getItem('repos'))
 
-    for (key in getRepos) {
+    if (getRepos){
+        for (key in getRepos) {
 
-        var repoName = key;
-        var repoOwner = getRepos[key];
+            var repoName = key;
+            var repoOwner = getRepos[key];
 
-        var li = $('<li class="public source">').append('<a>');
-        li.children('a').attr({
-            'href': '/' + repoOwner + '/' + repoName
-        })
-            .append('<span class="owner">')
-            .append('/')
-            .append('<span class="repo">');
+            var li = $('<li class="public source">').append('<a>');
+            li.children('a').attr({
+                'href': '/' + repoOwner + '/' + repoName
+            })
+                .append('<span class="owner">')
+                .append('/')
+                .append('<span class="repo">');
 
-        li.children('a').children('.owner').text(repoOwner);
-        li.children('a').children('.repo').text(repoName);
+            li.children('a').children('.owner').text(repoOwner);
+            li.children('a').children('.repo').text(repoName);
 
-        $('#clipped_repos_listing').append(li);
+            $('#clipped_repos_listing').append(li);
+        }
 
+        $('#clipped_repos').show();
 
     }
 }
-
 
 function handleURLS() {
 
@@ -130,7 +132,6 @@ function handleURLS() {
     if (url == "https://github.com/" || url == "https://github.com/dashboard/yours") {
         createClipPanel();
         fillPanel();
-        $('#clipped_repos').show();
 
     } else if ($('.watch-button').length > 0) {
         addClipButton();
