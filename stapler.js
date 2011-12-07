@@ -9,8 +9,9 @@ function handleButtonFunction(){
     var repos = clippedRepos();
 
     var repoInfo = repoInfos_func();
+    debugger;
 
-    if (repoInfo.name in repos) {
+    if (repoInfo.repo in repos) {
         return removeRepo;
     } else {
         return addRepo;
@@ -22,13 +23,15 @@ function repoInfos_func(){
 
     var repoInfos = {};
 
-    repoInfos.URL = $('[rel=alternate]')[0].getAttribute('href')
+    var repo = $('[rel=alternate]')[0].getAttribute('href')
         .replace('https://github.com/', '')
         .replace('/commits/master.atom', '');
 
-    repoInfos.owner = repoInfos.URL.replace(new RegExp("/.*"), '');
+    repoInfos[repo] = repo;
 
-    repoInfos.name = repoInfos.URL.replace(new RegExp(".*/"), '');
+    //repoInfos.owner = repoInfos.URL.replace(new RegExp("/.*"), '');
+
+    //repoInfos.name = repoInfos.URL.replace(new RegExp(".*/"), '');
 
     return repoInfos;
 }
@@ -40,7 +43,7 @@ function removeRepo(){
 
     var repos = clippedRepos();
 
-    delete repos[repoInfo.name];
+    delete repos[repoInfo.repo];
 
     localStorage.setItem('repos', JSON.stringify(repos));
 }
@@ -53,7 +56,7 @@ function addRepo() {
     var repoInfo = repoInfos_func();
 
     // TODO: This way I can't have more than one repo with the same name, fix it!
-    repos[repoInfo.name] = repoInfo.owner;
+    repos[repoInfo.repo] = repoInfo.repo;
 
     // Add to localStorage
     localStorage.setItem('repos', JSON.stringify(repos));
