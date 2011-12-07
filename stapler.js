@@ -9,7 +9,6 @@ function handleButtonFunction(){
     var repos = clippedRepos();
 
     var repoInfo = repoInfos_func();
-    debugger;
 
     if (repoInfo.repo in repos) {
         return removeRepo;
@@ -23,15 +22,11 @@ function repoInfos_func(){
 
     var repoInfos = {};
 
-    var repo = $('[rel=alternate]')[0].getAttribute('href')
+    var url = $('[rel=alternate]')[0].getAttribute('href')
         .replace('https://github.com/', '')
         .replace('/commits/master.atom', '');
 
-    repoInfos[repo] = repo;
-
-    //repoInfos.owner = repoInfos.URL.replace(new RegExp("/.*"), '');
-
-    //repoInfos.name = repoInfos.URL.replace(new RegExp(".*/"), '');
+    repoInfos.repo = url;
 
     return repoInfos;
 }
@@ -109,8 +104,8 @@ function fillPanel() {
     if (getRepos){
         for (key in getRepos) {
 
-            var repoName = key;
-            var repoOwner = getRepos[key];
+            var repoName = key.replace(new RegExp(".*/"), '');
+            var repoOwner = key.replace(new RegExp("/.*"), '');
 
             var li = $('<li class="public source">').append('<a>');
             li.children('a').attr({
