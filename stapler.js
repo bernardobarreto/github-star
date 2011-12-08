@@ -88,10 +88,21 @@ function createClipPanel() {
 
     Panel.append('<ul class="repo_list" id="clipped_repos_listing">')
 
-    Panel.append('<div class="bottom-bar">');
-    Panel.children('.bottom-bar').append('<a href="" class="show-more" id="inline_clipped_repos">')
+    //Panel.append('<div class="bottom-bar">');
+    //Panel.children('.bottom-bar').append('<a href="" class="show-more" id="inline_clipped_repos">')
 
     $('div[id=dashboard]').prepend(Panel);
+}
+
+
+function addBottomBar() {
+
+    var button = $('<div class="bottom-bar">')
+        .append('<a href="#" class="show-more" id="inline_clipped_repos"> Show all repositories.. </a>')
+        .click(function() {
+            $('#clipped_repos_listing > li').show()
+       });
+    $('#clipped_repos_listing').append(button);
 }
 
 
@@ -102,7 +113,12 @@ function fillPanel() {
     var getRepos = JSON.parse(localStorage.getItem('repos'));
 
     if (getRepos){
+
+        var clipped_repos_count = 0;
+
         for (key in getRepos) {
+
+            clipped_repos_count++;
 
             var repoName = key.replace(new RegExp(".*/"), '');
             var repoOwner = key.replace(new RegExp("/.*"), '');
@@ -118,10 +134,17 @@ function fillPanel() {
             li.children('a').children('.owner').text(repoOwner);
             li.children('a').children('.repo').text(repoName);
 
+            clipped_repos_count > 10 ? li.hide() : li.show()
+
             $('#clipped_repos_listing').append(li);
         }
 
         repos !== "{}" && $('#clipped_repos').show();
+
+    if (clipped_repos_count > 10){
+        addBottomBar();
+    }
+
     }
 }
 
