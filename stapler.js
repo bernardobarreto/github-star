@@ -50,7 +50,6 @@ function addRepo() {
 
     var repoInfo = repoInfos_func();
 
-    // TODO: This way I can't have more than one repo with the same name, fix it!
     repos[repoInfo.repo] = repoInfo.repo;
 
     // Add to localStorage
@@ -88,9 +87,6 @@ function createClipPanel() {
 
     Panel.append('<ul class="repo_list" id="clipped_repos_listing">')
 
-    //Panel.append('<div class="bottom-bar">');
-    //Panel.children('.bottom-bar').append('<a href="" class="show-more" id="inline_clipped_repos">')
-
     $('div[id=dashboard]').prepend(Panel);
 }
 
@@ -101,8 +97,9 @@ function addBottomBar() {
         .append('<a href="#" class="show-more" id="inline_clipped_repos"> Show all repositories.. </a>')
         .click(function() {
             $('#clipped_repos_listing > li').show()
+            $('
        });
-    $('#clipped_repos_listing').append(button);
+    $('#clipped_repos').append(button);
 }
 
 
