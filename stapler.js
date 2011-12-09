@@ -8,7 +8,7 @@ function handleButtonFunction(){
 
     var repos = clippedRepos();
 
-    var repoInfo = repoInfos_func();
+    var repoInfo = repoInfosFunc();
 
     if (repoInfo.repo in repos) {
         return removeRepo;
@@ -18,7 +18,7 @@ function handleButtonFunction(){
 }
 
 
-function repoInfos_func(){
+function repoInfosFunc(){
 
     var repoInfos = {};
 
@@ -34,7 +34,7 @@ function repoInfos_func(){
 
 function removeRepo(){
 
-    var repoInfo = repoInfos_func();
+    var repoInfo = repoInfosFunc();
 
     var repos = clippedRepos();
 
@@ -48,7 +48,7 @@ function addRepo() {
 
     var repos = clippedRepos();
 
-    var repoInfo = repoInfos_func();
+    var repoInfo = repoInfosFunc();
 
     repos[repoInfo.repo] = repoInfo.repo;
 
@@ -59,7 +59,7 @@ function addRepo() {
 
 function addClipButton() {
 
-    var repoInfo = repoInfos_func();
+    var repoInfo = repoInfosFunc();
 
     var job = handleButtonFunction(repoInfo);
 
