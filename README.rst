@@ -1,7 +1,7 @@
 RepoStapler
 -----------
 
-RepoStapler adds a "Clip" button next to the numbers of "forks" and "watchers" at the page of a repositorie.
+RepoStapler adds a "Clip" button next to the numbers of "forks" and "watchers" at the page of a repository.
 What is this button for ?
 Sometimes I want to keep the reference of a repositorie without watch it.
 I could add into my browser's favorite, but that sucks.
